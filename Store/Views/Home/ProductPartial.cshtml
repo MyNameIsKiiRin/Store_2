@@ -1,0 +1,37 @@
+﻿@using Store.Models.EF;
+@model IEnumerable<SanPham>
+
+<div class="content-bottom">
+    <div class=" row">
+                @foreach (var item in Model.Take(4))
+                {
+                    <div class=" col-md-3 ">
+                        <a href=@Url.Action("Index","Products",new {id=item.MaSP })>
+                            <div class="view view-fifth">
+                                <div class="top_box">
+                                    <h3 class="m_1 text-center">@item.TenSP</h3>
+                                    <div class="grid_img">
+                                        <div class="css3 img-fluid"><img src=@Url.Content("~/assets/Client/Product_Images/"+item.HinhAnh1) alt="" /></div>
+                                        <div class="mask">
+                                            <a class="info" href=@Url.Action("Index","Products",new {id=item.MaSP })>Chi Tiết</a>
+                                        </div>
+                                    </div>
+                                    <div class="price">@item.DonGia.Value.ToString("#,##") đ</div>
+                                </div>
+                            </div>
+                            <ul class="list" style="background:red">
+                                <li>
+                                    <img src="images/plus.png" alt="" />
+                                    <ul class="icon1 sub-icon1 profile_img">
+                                        <li>
+                                            <a class="active-icon c1" style="background:red" href="#">Thêm Vào Giỏ Hàng </a>
+
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </a>
+                    </div>
+                }
+    </div>
+</div>

@@ -1,0 +1,47 @@
+﻿@using Store.Models.EF
+@model IEnumerable<SanPham>
+@{
+    Layout = null;
+}
+<div class="header-bottom" style="background:orange">
+    <div class="wrap">
+        <!-- start header menu -->
+        <ul class="megamenu skyblue">
+            <li>@Html.ActionLink("Trang Chủ","Index","Home")</li>
+            @foreach (var item in Model.GroupBy(n => n.LoaiSanPham))
+            {
+                if (item.Key != null)
+                {
+                    <li class="grid">
+                        <a class="color2" href=@Url.Action("List_Products","Products", new {@id=item.Key.MaLoaiSP })>@item.Key.TenLoaiSP</a>
+                        <div class="megapanel">
+                            <div class="row">
+                                @foreach (var item2 in item.GroupBy(n => n.NhaSanXuat))
+                                {
+                                    <div class="col1">
+                                        <div class="h_nav">
+                                            @if (item2.Key != null)
+                                            {
+                                            <h4>@item2.Key.TenNSX</h4>
+                                            <ul>
+                                                @foreach (var item3 in item2)
+                                                {
+                                                    <li><a href=@Url.Action("Index","Products", new {@id=item3.MaSP })>@item3.TenTat</a></li>
+
+                                                }
+                                            </ul>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                                </div>
+                        </div>
+                    </li>
+                }
+            }
+
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+
