@@ -50,6 +50,7 @@ namespace Store.Controllers
                 LstCart.Add(itemcart);
             return Redirect(url);
         }
+        [HttpGet]
         public ActionResult UpdateCart(string id, string cfid)
         {
             if(Session["Cart"]==null)
@@ -65,7 +66,22 @@ namespace Store.Controllers
             List<CartItem> LstCart = GetCart();
             CartItem CartCheck = LstCart.SingleOrDefault(n => n.masp == id && n.mach == cfid);
             if (CartCheck == null) return RedirectToAction("Index", "Home");
+            ViewBag.Cart = LstCart;
             return View(CartCheck);
+        }
+        [HttpPost]
+        public ActionResult UpdateCart(CartItem cartItem)
+        {
+            //var sp = new ProductDAO().GetById(cartItem.masp);
+            //if(sp.SoLuongTon<cartItem.soluong)
+            //{
+            //    return null;
+            //}
+            //List<CartItem> LstCart = GetCart();
+            //CartItem ItemUpdate = LstCart.Find(n => n.masp == cartItem.masp && n.mach == cartItem.mach);
+            //ItemUpdate.soluong = cartItem.soluong;
+            //ItemUpdate.thanhtien = ItemUpdate.soluong * ItemUpdate.dongia;
+            return RedirectToAction("GetCart");
         }
         public double Total()
         {

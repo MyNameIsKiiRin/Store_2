@@ -12,25 +12,33 @@
             <thead>
                 <tr>
                     <td>Tên Sản Phẩm</td>
-                    <td>Hình Ảnh</td>
+                    <td></td>
                     <td>Phiên Bản</td>
                     <td>Giá</td>
                     <td>Số Lượng</td>
                     <td>Thành Tiền</td>
+                    <td></td>
                 </tr>
             </thead>
-            <tbody>
+
                 @foreach (var item in Model)
                 {
-                <td>@item.tensp</td>
-                <td><img style="width:15%" src=@Url.Content("~/assets/Client/Product_Images/"+item.hinhanh)></td>
-                <td>@item.cauhinh</td>
-                <td>@item.dongia.ToString("#,##")</td>
-                <td>@item.soluong</td>
-                <td>@item.thanhtien.ToString("#,##")</td>
+                    
+                    
+                        <tr>
+                            <td>@item.tensp</td>
+                            <td><img style="width:15%" src=@Url.Content("~/assets/Client/Product_Images/"+item.hinhanh)></td>
+                            <td>@item.cauhinh</td>
+                            <td>@item.dongia.ToString("#,##")</td>
+                            <td>@item.soluong</td>
+                            <td>@item.thanhtien.ToString("#,##")</td>
+                            <td>@Html.ActionLink("Cập nhật","UpdateCart", new {@id=item.masp, @cfid=item.mach })<td>
+                        </tr>
+                    
+
                 }
-            </tbody>
-        </table>
+
+            </table>
         <div class="clearfix"></div>
     </div>
 </div>

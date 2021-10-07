@@ -272,6 +272,7 @@
     <Content Include="Views\Products\Config.cshtml" />
     <Content Include="Views\Home\FooterPartial.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\UpdateCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -279,6 +280,7 @@
     <Folder Include="assets\Client\Ads\" />
     <Folder Include="assets\Client\News\" />
     <Folder Include="assets\Client\Product_Images\" />
+    <Folder Include="assets\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -12,10 +12,16 @@
         var temp = "";
         function getid(clicked_id) {
             temp = clicked_id;
-            var text = '<a class="btn btn-warning" href=@Url.Action("AddToCart","Cart",new {@id=Model.MaSP,@cfid="temp",@url=Request.Url.ToString() })>Mua Ngay</a>';
+            var text = '<a id="re" class="btn btn-warning" href=@Url.Action("AddToCart","Cart",new {@id=Model.MaSP,@cfid="temp",@url=Request.Url.ToString() })>Mua Ngay</a>';
             text = text.replace("temp", temp)
-            $('#re').replaceWith(text);
+            $('#but').replaceWith(text);
+
         }
+        function noti() {
+            txt = 'Chọn Cấu Hình'
+            alert(txt);
+        };
+        
             $(window).load(function () {
                 $("#flexiselDemo1").flexisel();
                 $("#flexiselDemo2").flexisel({
@@ -62,16 +68,13 @@
             });
 
 
-
-
-
     </script>
         <script type="text/javascript" src="~/assets/Client/js/jquery.flexisel.js"></script>
 }
     <div class="single">
         <div class="wrap">
-            <div class="cont span_2_of_3 row">
-                <div class="labout span_1_of_a1 col-xs-12 col-md-5">
+            <div class="row">
+                <div class="labout span_1_of_a1 col-xs-12 col-md-5" style="max-width:100%">
                     <!-- start product_slider -->
                     <ul id="etalage">
                         <li>
@@ -102,25 +105,23 @@
                     <h3 class="m_3">@Model.TenSP</h3>
 
                     <div class="price_single">
-                        <span class="reducedfrom">$66.00</span>
+                        <span class="reducedfrom">@Model.DonGia.Value.ToString("#,##")</span>
                         <span class="actual">@Model.DonGia.Value.ToString("#,##")đ</span><a href="#">click for offer</a>
                     </div>
                     <ul class="options">
                         <h4 class="m_9">Cấu Hình</h4>
                         @foreach (var item in ViewBag.Config)
                         {
-                            <li><button id="@item.MaCH" class="btn btn-outline-primary" onclick="getid(this.id)">@item.TenCH</button></li>
+                            <li><button id="@item.MaCH" class="btn btn-outline-primary" style="border:none" onclick="getid(this.id)">@item.TenCH</button></li>
 
                         }
                         
                         <div class="clearfix"></div>
                     </ul>
                     <div class="btn_form">
-                        <a id="re" class="btn btn-warning" href=@Url.Action("AddToCart","Cart",new {@id=Model.MaSP,@cfid="temp",@url=Request.Url.ToString() })>Mua Ngay</a>
+                        <button id="but" class="btn btn-warning" onclick="noti()">Mua Ngay</button>
                     </div>
-                    <ul class="add-to-links">
-                        <li><img src="images/wish.png" alt="" /><a href="#">Thêm Vào Giỏ Hàng</a></li>
-                    </ul>
+                    
                     <p class="m_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 
                     <div class="social_single">

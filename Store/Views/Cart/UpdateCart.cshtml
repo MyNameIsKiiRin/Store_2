@@ -1,0 +1,65 @@
+﻿@using Store.Models.DAO;
+@model CartItem
+@{
+    ViewBag.Title = "UpdateCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    List<CartItem> LstCart = ViewBag.Cart as List<CartItem>;
+}
+<div class="single">
+    <div class="single_grid">
+        <h3>Giỏ Hàng</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Tên Sản Phẩm</td>
+                    <td></td>
+                    <td>Phiên Bản</td>
+                    <td>Giá</td>
+                    <td>Số Lượng</td>
+                    <td>Thành Tiền</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in LstCart)
+                {
+                    if (Model.masp == item.masp && Model.mach == item.mach)
+                    {
+                        using (Html.BeginForm())
+                        {
+                            <tr>
+
+                                <td>@item.tensp @Html.Hidden("Masp", item.masp)</td>
+                                <td><img style="width:15%" src=@Url.Content("~/assets/Client/Product_Images/" + item.hinhanh)></td>
+                                <td>@item.cauhinh @Html.Hidden("Masp", item.mach)</td>
+                                <td>@item.dongia.ToString("#,##")</td>
+                                <td><input type="text" style="width:15%" value=@item.soluong class="text-center"></td>
+                                <td>@item.thanhtien.ToString("#,##")</td>
+                                <td><input type="submit" class="btn btn-danger" value="Cập Nhật" /></td>
+                            </tr>
+                        }
+
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>@item.tensp</td>
+                            <td><img style="width:15%" src=@Url.Content("~/assets/Client/Product_Images/"+item.hinhanh)></td>
+                            <td>@item.cauhinh</td>
+                            <td>@item.dongia.ToString("#,##")</td>
+                            <td>@item.soluong</td>
+                            <td>@item.thanhtien.ToString("#,##")</td>
+                            <td>@Html.ActionLink("Cập nhật", "UpdateCart", new { @id = item.masp, @cfid = item.mach })
+                            <td>
+                        </tr>
+                    }
+
+                }
+            </tbody>
+
+        </table>
+        <div class="clearfix"></div>
+    </div>
+</div>
