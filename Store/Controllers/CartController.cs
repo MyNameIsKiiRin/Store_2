@@ -126,6 +126,7 @@ namespace Store.Controllers
                 db.KhachHangs.Add(Customer);
                 db.SaveChanges();
             }
+            order.MaKH = Customer.MaKH;
             var dao = new OrderDAO().Order(order);
             List<CartItem> LstCart = GetCart();
             if(dao)
@@ -135,6 +136,7 @@ namespace Store.Controllers
                 {
                     ChiTietDonDatHang dtorder = new ChiTietDonDatHang();
                     dtorder.MaCTDDH = "CTDDH" + (string)DateTime.Now.ToString("hh:mm:ss");
+                    
                     dtorder.MaDDH = order.MaDDH;
                     dtorder.MaSP = item.masp;
                     dtorder.TenSP = item.tensp;
