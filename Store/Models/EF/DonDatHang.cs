@@ -21,7 +21,7 @@ namespace Store.Models.EF
 
         public DateTime? NgayDat { get; set; }
 
-        public bool? TinhTrang { get; set; }
+        public bool? TinhTrangGiaoHang { get; set; }
 
         public DateTime? NgayGiao { get; set; }
 
@@ -31,6 +31,8 @@ namespace Store.Models.EF
         public string MaKH { get; set; }
 
         public int? UuDai { get; set; }
+        public bool? HuyDon { get; set; }
+        public bool? TrangThai { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonDatHang> ChiTietDonDatHangs { get; set; }

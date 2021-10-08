@@ -7,9 +7,11 @@
 @{ 
     List<CartItem> LstCart = ViewBag.Cart as List<CartItem>;
 }
+
 <div class="single">
     <div class="single_grid">
         <h3>Giỏ Hàng</h3>
+
         <table class="table">
             <thead>
                 <tr>
@@ -30,12 +32,11 @@
                         using (Html.BeginForm())
                         {
                             <tr>
-
-                                <td>@item.tensp @Html.Hidden("Masp", item.masp)</td>
+                                <td>@item.tensp @Html.Hidden("masp", item.masp)</td>
                                 <td><img style="width:15%" src=@Url.Content("~/assets/Client/Product_Images/" + item.hinhanh)></td>
-                                <td>@item.cauhinh @Html.Hidden("Masp", item.mach)</td>
+                                <td>@item.cauhinh @Html.Hidden("mach", item.mach)</td>
                                 <td>@item.dongia.ToString("#,##")</td>
-                                <td><input type="text" style="width:15%" value=@item.soluong class="text-center"></td>
+                                <td><input type="number" style="width:15%" value=@item.soluong class="text-center" name="soluong"></td>
                                 <td>@item.thanhtien.ToString("#,##")</td>
                                 <td><input type="submit" class="btn btn-danger" value="Cập Nhật" /></td>
                             </tr>
@@ -51,8 +52,7 @@
                             <td>@item.dongia.ToString("#,##")</td>
                             <td>@item.soluong</td>
                             <td>@item.thanhtien.ToString("#,##")</td>
-                            <td>@Html.ActionLink("Cập nhật", "UpdateCart", new { @id = item.masp, @cfid = item.mach })
-                            <td>
+                            <td>@Html.ActionLink("Cập nhật", "UpdateCart", new { @id = item.masp, @cfid = item.mach })</td>
                         </tr>
                     }
 

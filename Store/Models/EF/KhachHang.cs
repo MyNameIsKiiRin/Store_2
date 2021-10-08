@@ -1,4 +1,4 @@
-namespace Store.Models.EF
+﻿namespace Store.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -20,15 +20,23 @@ namespace Store.Models.EF
         public string MaKH { get; set; }
 
         [StringLength(50)]
+        [Required(ErrorMessage ="Bạn Chưa Nhập Tên")]
         public string TenKH { get; set; }
 
         [StringLength(100)]
+        [Required(ErrorMessage = "Bạn Chưa Nhập Địa Chỉ")]
         public string DiaChi { get; set; }
 
         [StringLength(50)]
+        [EmailAddress(ErrorMessage ="Sai Định Dạng Email")]
+        [DataType(DataType.EmailAddress,ErrorMessage ="Sai Định Dạng Email")]
+        [Required(ErrorMessage = "Bạn Chưa Nhập Email")]
         public string Email { get; set; }
 
         [StringLength(15)]
+        [Required(ErrorMessage = "Bạn Chưa Nhập Số Điện Thoại")]
+        [DataType(DataType.PhoneNumber,ErrorMessage ="Sai Định Dạng Số Điện Thoại")]
+        [Phone(ErrorMessage ="Sai Định Dạng Số Điện Thoại")]
         public string SoDienThoai { get; set; }
 
         [StringLength(50)]

@@ -32,5 +32,6 @@ namespace Store.Models.DAO
             cauhinh = cf.TenCH;
             thanhtien = soluong * dongia;
         }
+        public CartItem() { }
     }
 }

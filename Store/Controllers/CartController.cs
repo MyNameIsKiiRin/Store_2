@@ -9,6 +9,7 @@ namespace Store.Controllers
 {
     public class CartController : Controller
     {
+        DBStore db = new DBStore();
         // GET: Cart
         public List<CartItem> GetCart()
         {
@@ -72,16 +73,80 @@ namespace Store.Controllers
         [HttpPost]
         public ActionResult UpdateCart(CartItem cartItem)
         {
-            //var sp = new ProductDAO().GetById(cartItem.masp);
-            //if(sp.SoLuongTon<cartItem.soluong)
-            //{
-            //    return null;
-            //}
-            //List<CartItem> LstCart = GetCart();
-            //CartItem ItemUpdate = LstCart.Find(n => n.masp == cartItem.masp && n.mach == cartItem.mach);
-            //ItemUpdate.soluong = cartItem.soluong;
-            //ItemUpdate.thanhtien = ItemUpdate.soluong * ItemUpdate.dongia;
-            return RedirectToAction("GetCart");
+            var sp = new ProductDAO().GetById(cartItem.masp);
+            if (sp.SoLuongTon < cartItem.soluong)
+            {
+                return null;
+            }
+            List<CartItem> LstCart = GetCart();
+            CartItem ItemUpdate = LstCart.Find(n => n.masp == cartItem.masp && n.mach == cartItem.mach);
+            ItemUpdate.soluong = cartItem.soluong;
+            if (ItemUpdate.soluong == 0) DeleteCart(ItemUpdate.masp, ItemUpdate.mach);
+            ItemUpdate.thanhtien = ItemUpdate.soluong * ItemUpdate.dongia;
+            return RedirectToAction("Index");
+        }
+        public ActionResult DeleteCart(string id,string cfid)
+        {
+            if (Session["Cart"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            var sp = new ProductDAO().GetById(id);
+            if (sp == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            List<CartItem> LstCart = GetCart();
+            CartItem CartCheck = LstCart.SingleOrDefault(n => n.masp == id && n.mach == cfid);
+            if (CartCheck == null) return RedirectToAction("Index", "Home");
+            LstCart.Remove(CartCheck);
+            return RedirectToAction("Index");
+        }
+        public ActionResult Order(DonDatHang order,KhachHang customer)
+        {
+            
+            if (Session["Cart"] == null)
+                return RedirectToAction("Index", "Home");
+            KhachHang Customer = new KhachHang();
+            if(Session["Customer"]==null)
+            {
+                Customer = customer;
+                Customer.MaKH = "KH" + (string)DateTime.Now.ToString("hh:mm:ss");
+                db.KhachHangs.Add(Customer);
+                db.SaveChanges();
+            }
+            else
+            {
+                ThanhVien mem= Session["Customer"] as ThanhVien;
+                Customer.TenKH = mem.HoTen;
+                Customer.DiaChi = mem.DiaChi;
+                Customer.Email = mem.Email;
+                Customer.SoDienThoai = mem.SoDienThoai;
+                db.KhachHangs.Add(Customer);
+                db.SaveChanges();
+            }
+            var dao = new OrderDAO().Order(order);
+            List<CartItem> LstCart = GetCart();
+            if(dao)
+            {
+                
+                foreach (var item in LstCart)
+                {
+                    ChiTietDonDatHang dtorder = new ChiTietDonDatHang();
+                    dtorder.MaCTDDH = "CTDDH" + (string)DateTime.Now.ToString("hh:mm:ss");
+                    dtorder.MaDDH = order.MaDDH;
+                    dtorder.MaSP = item.masp;
+                    dtorder.TenSP = item.tensp;
+                    dtorder.SoLuong = item.soluong;
+                    dtorder.DonGia = item.dongia;
+                    db.ChiTietDonDatHangs.Add(dtorder);
+
+                }
+                db.SaveChanges();
+            }
+            Session["Cart"] = null;
+            return RedirectToAction("Index");
         }
         public double Total()
         {

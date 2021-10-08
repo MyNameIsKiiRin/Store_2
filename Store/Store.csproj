@@ -138,6 +138,7 @@
     <Compile Include="Models\DAO\CartItem.cs" />
     <Compile Include="Models\DAO\CommonDAO.cs" />
     <Compile Include="Models\DAO\NewDAO.cs" />
+    <Compile Include="Models\DAO\OrderDAO.cs" />
     <Compile Include="Models\DAO\ProductDAO.cs" />
     <Compile Include="Models\DAO\SlideDAO.cs" />
     <Compile Include="Models\EF\BinhLuan.cs" />
