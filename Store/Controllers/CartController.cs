@@ -135,7 +135,7 @@ namespace Store.Controllers
                 foreach (var item in LstCart)
                 {
                     ChiTietDonDatHang dtorder = new ChiTietDonDatHang();
-                    dtorder.MaCTDDH = "CTDDH" + (string)DateTime.Now.ToString("hh:mm:ss");
+                    dtorder.MaCTDDH = new CommonDAO().lastid();
                     
                     dtorder.MaDDH = order.MaDDH;
                     dtorder.MaSP = item.masp;

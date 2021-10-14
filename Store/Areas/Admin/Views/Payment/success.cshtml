@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Store.Models.EF.DonDatHang>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KhachHang.TenKH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayDat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TinhTrangGiaoHang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayGiao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DaThanhToan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UuDai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HuyDon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrangThai)
+            </th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KhachHang.TenKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TinhTrangGiaoHang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayGiao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DaThanhToan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UuDai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HuyDon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrangThai)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

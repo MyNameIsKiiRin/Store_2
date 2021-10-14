@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="container mt-2">
+    <h3 class="mb-3">Quản Lý Đơn Hàng</h3>
+    <ul class="nav nav-tabs text-center justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#home">
+                Chưa Thanh Toán
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#profile">
+                Đang Vận Chuyển
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#contact">
+                Giao Hàng Thành Công
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="home">
+            <div class="row border g-0 rounded shadow-sm">
+                <table>
+                    @{Html.RenderAction("Unpaid", "Payment");}
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane" id="profile">
+            <div class="row border g-0 rounded shadow-sm">
+                @{Html.RenderAction("Paid", "Payment");}
+            </div>
+        </div>
+        <div class="tab-pane" id="contact">
+            <div class="row border g-0 rounded shadow-sm">
+                @{Html.RenderAction("success", "Payment");}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .dimension {
+        width: 500px;
+        height: 300px;
+    }
+
+    .nav-tabs .nav-link.active {
+        background-color: #9400d3;
+        color: #fff;
+        border: 3px solid #9400d3;
+    }
+
+    .nav-tabs .nav-link {
+        background-color: #fff;
+        color: #9400d3;
+        border: 3px solid #9400d3;
+        margin-right: 2rem;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+        .nav-tabs .nav-link:hover {
+            border: 3px solid #9400d3;
+        }
+
+    .nav-tabs {
+        border-bottom: 1px solid #9400d3;
+    }
+
+    .tab-content {
+        border: 1px solid #9400d3;
+        padding: 20px;
+    }
+</style>
+

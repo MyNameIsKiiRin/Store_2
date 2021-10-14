@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Store.Models.EF.SanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2 class="text-info">Danh Sách Sản Phẩm</h2>
+
+<p>
+    <a class="btn btn-primary" href=@Url.Action("Create")>Thêm Sản Phẩm</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LoaiSanPham.TenLoaiSP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NhaCungCap.TenNCC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NhaSanXuat.TenNSX)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenSP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenTat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonGia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuongTon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrangThai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayCapNhat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Moi)
+            </th>
+
+
+
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoaiSanPham.TenLoaiSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NhaCungCap.TenNCC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NhaSanXuat.TenNSX)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenTat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuongTon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrangThai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayCapNhat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Moi)
+                </td>
+
+
+
+                <td>
+                    @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = item.MaSP })
+
+                </td>
+            </tr>
+        </tbody>
+    }
+
+</table>

@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Store.Models.EF.DonDatHang>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KhachHang.TenKH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayDat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TinhTrangGiaoHang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayGiao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DaThanhToan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UuDai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HuyDon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrangThai)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KhachHang.TenKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TinhTrangGiaoHang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayGiao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DaThanhToan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UuDai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HuyDon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrangThai)
+                </td>
+                <td>
+                    <a href="#" class="btn btn-primary" data-id="@item.MaDDH" id="btnsuccess">
+                        Giao Hàng Thành Công
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<script>
+    $(document).ready(function () {
+        var delivery = {
+            init: function () {
+                delivery.registerEvents();
+            },
+            registerEvents: function () {
+                $("#btnsuccess").off('click').on('click', function (e) {
+                    e.preventDefault();
+                    var btn = $(this)
+                    var id = btn.data('id')
+                    $.ajax({
+                        url: "/Admin/Payment/delivery",
+                        data: { id: id },
+                        dataType: "json",
+                        type: "POST",
+                        success: function (response) {
+
+                            if (response.TinhTrangGiaoHang == true) {
+
+                                location.reload();
+                            }
+                        }
+                    })
+                })
+            }
+        }
+        delivery.init();
+    }
+</script>

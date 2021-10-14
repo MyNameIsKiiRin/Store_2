@@ -1,4 +1,4 @@
-namespace Store.Models.EF
+﻿namespace Store.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -21,6 +21,7 @@ namespace Store.Models.EF
         public string MaNCC { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Nhà Cung Cấp")]
         public string TenNCC { get; set; }
 
         [StringLength(50)]

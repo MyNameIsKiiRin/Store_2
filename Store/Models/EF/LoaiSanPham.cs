@@ -1,4 +1,4 @@
-namespace Store.Models.EF
+﻿namespace Store.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -20,6 +20,7 @@ namespace Store.Models.EF
         public string MaLoaiSP { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Loại Sản Phẩm")]
         public string TenLoaiSP { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

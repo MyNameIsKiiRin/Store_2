@@ -20,6 +20,22 @@ namespace Store.Models.DAO
         {
             return db.Footers.Where(n => n.TrangThai == true);
         }
+        public string lastid()
+        {
+            int a = 0;
+            List<int> lstid = new List<int>();
+            IEnumerable<string> id = from temp in db.ChiTietDonDatHangs select temp.MaCTDDH;
+            foreach (var temp in id)
+            {
+                a = int.Parse(temp);
+                lstid.Add(int.Parse(temp));
+            }
+            lstid.Sort();
+            int max = lstid.Last();
+            max++;
+            return max.ToString();
+        }
+
     }
 
 }

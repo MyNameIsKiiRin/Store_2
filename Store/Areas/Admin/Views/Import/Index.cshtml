@@ -1,0 +1,149 @@
+﻿@using Store.Models.EF;
+@model PhieuNhap
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm("import", "Import", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <h4 class="text-primary">Thêm Sản Phẩm</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaNCC, "MaNCC", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="MaNCC" class="form-control">
+                    @foreach (var item in ViewBag.sup)
+                    {
+                        <option value="@item.MaNCC">@item.TenNCC</option>
+                    }
+                </select>
+
+                @Html.ValidationMessageFor(model => model.MaNCC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgayNhap, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NgayNhap, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NgayNhap, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+    <table class="table">
+        @{IEnumerable<SanPham> LstSanPham = ViewBag.pro as IEnumerable<SanPham>; }
+
+
+        <tr class="trAppend" style="display:none">
+            <td>
+                <select class="dlpro" name="">
+                    @foreach (var item in LstSanPham)
+                    {
+                        <option value="@item.MaSP">@item.TenSP</option>
+                    }
+                </select>
+            </td>
+            <td>
+                <input name="" class="txtprice" value="0" />
+            </td>
+            <td>
+                <input name="" class="txtTotal" value="0" />
+            </td>
+            <td>
+                <input type="button" class="btn btn-danger" value="-" id="btnDel" style="cursor:pointer" />
+            </td>
+        </tr>
+        <tr class="trFirst" data-id="-1">
+            <td>Sản Phẩm</td>
+            <td>Đơn Giá Nhập</td>
+            <td>Số Lượng Nhập</td>
+            <td></td>
+        </tr>
+    </table>
+    <input type="button" class="btn btn-info" value="+" id="btnAdd" style="cursor:pointer" />
+    <input type="submit" class="btn btn-success" id="btnImport" />
+    <p>hahaa</p>
+}
+<script>
+    $(document).ready(function () {
+        $("#btnAdd").click(function () {
+
+            var lastId = $(".table").find("tr:last-child").attr("data-id");
+            i = parseInt(lastId) + 1;
+
+            var content = $(".trAppend").html();
+            var content = "<tr class=\"trAppended\" data-id=\"" + i + "\">" + content + "</tr>";
+            $(".table").append(content);
+            LoadID();
+        });
+        $("body").delegate("#btnDel", "click", function () {
+            $(this).closest(".trAppended").remove();
+            updateID();
+        });
+        $("#btnImport").click(function () {
+            if (checkprice() == false) return false;
+            if (checktotal() == false) return false;
+        })
+
+        function LoadID() {
+            $(".trAppended").each(function () {
+                var id = $(this).attr("data-id");
+                var proId = "[" + id + "].MaSP";
+                var total = "[" + id + "].SoLuongNhap";
+                var price = "[" + id + "].DonGiaNhap";
+                $(this).find(".dlpro").prop("name", id);
+                $(this).find(".txtprice").prop("name", price);
+                $(this).find(".txtTotal").prop("name", total);
+            });
+        }
+        function updateID() {
+            var lastId = $(".table").find(".trFirst").attr("data-id");
+            i = parseInt(lastId) + 1;
+            $(".trAppended").each(function () {
+                var id = i;
+                $(this).attr("data-id", i);
+                var proId = "[" + id + "].MaSP";
+                var total = "[" + id + "].SoLuongNhap";
+                var price = "[" + id + "].DonGiaNhap";
+                $(this).find(".dlpro").prop("name", id);
+                $(this).find(".txtprice").prop("name", price);
+                $(this).find(".txtTotal").prop("name", total);
+                i++;
+            });
+        };
+        function checkprice() {
+            var bl = true;
+            $(".txtprice").each(function () {
+                var val = $(this).val();
+                if (isNaN(val) == true) {
+                    alert("Đơn gía không hợp lệ");
+                    bl = false;
+                }
+                else if (val = 0 && val < 0) {
+                    alert("Đơn gía không được nhỏ hơn hoặc bằng 0");
+                    bl = false;
+                }
+            })
+            return bl;
+        }
+        function checktotal() {
+            var bl = true;
+            $(".txtTotal").each(function () {
+                var val = $(this).val();
+                if (isNaN(val) == true) {
+                    alert("Số lượng không hợp lệ");
+                    bl = false;
+
+                }
+            })
+            return bl;
+        }
+    });
+
+</script>
+

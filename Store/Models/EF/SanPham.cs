@@ -1,4 +1,4 @@
-namespace Store.Models.EF
+﻿namespace Store.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -20,18 +20,20 @@ namespace Store.Models.EF
 
         [Key]
         [StringLength(50)]
+        [Display(Name ="Mã Sản Phẩm")]
         public string MaSP { get; set; }
-
+        [Display(Name = "Tên Sản Phẩm")]
         public string TenSP { get; set; }
         [StringLength(250)]
+        
         public string TenTat { get; set; }
         [StringLength(250)]
         public string TenURL { get; set; }
-
+        [Display(Name = "Đơn Giá")]
         public decimal? DonGia { get; set; }
-
+        [Display(Name = "Mô Tả")]
         public string MoTa { get; set; }
-
+        [Display(Name = "Số Lượng Tồn")]
         public int? SoLuongTon { get; set; }
 
         [StringLength(50)]
@@ -42,24 +44,17 @@ namespace Store.Models.EF
 
         [StringLength(50)]
         public string MaLoaiSP { get; set; }
-
+        [Display(Name = "Trạng Thái")]
         public bool? TrangThai { get; set; }
-
+        [Display(Name = "Ngày Cập Nhật")]
         public DateTime? NgayCapNhat { get; set; }
-
+        [Display(Name = "Sản Phẩm Mới")]
         public bool? Moi { get; set; }
-
-        public int? LuotXem { get; set; }
-
-        public int? LuotBinhChon { get; set; }
-
-        public int? LuotBinhLuan { get; set; }
-
-        public int? SoLanMua { get; set; }
+        
         public string HinhAnh1 { get; set; }
-
+        [Display(Name = "Hình Ảnh 2")]
         public string HinhAnh2 { get; set; }
-
+        [Display(Name = "Hình Ảnh 3")]
         public string HinhAnh3 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

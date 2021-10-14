@@ -54,5 +54,53 @@ namespace Store.Models.DAO
             var pro = db.SanPhams.Find(id);
             return db.SanPhams.Where(n => n.MaSP != id && n.MaLoaiSP == pro.MaLoaiSP).ToList();
         }
+        public string lastid()
+        {
+            int a = 0;
+            List<int> lstid = new List<int>();
+            IEnumerable<string> id = from temp in db.SanPhams select temp.MaSP ;
+            foreach (var temp in id)
+            {
+                a = int.Parse(temp);
+                lstid.Add(int.Parse(temp));
+            }
+            lstid.Sort();
+            int max = lstid.Last();
+            max++;
+            return max.ToString();
+        }
+        public bool Insert(SanPham pro)
+        {
+            
+            db.SanPhams.Add(pro);
+            db.SaveChanges();
+            return true;
+        }
+        public bool update(SanPham entity)
+        {
+            try
+            {
+                var sp = db.SanPhams.Find(entity.MaSP);
+                if(entity.HinhAnh1!=null && entity.HinhAnh2!=null && entity.HinhAnh3!=null)
+                {
+                    sp.HinhAnh1 = entity.HinhAnh1;
+                    sp.HinhAnh2 = entity.HinhAnh2;
+                    sp.HinhAnh3 = entity.HinhAnh3;
+                }
+                sp.DonGia = entity.DonGia;
+                sp.TenTat = entity.TenTat;
+                sp.TrangThai = entity.TrangThai;
+                sp.Moi = entity.Moi;
+                sp.MoTa = entity.MoTa;
+                db.SaveChanges();
+                return true;
+
+
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Store</RootNamespace>
     <AssemblyName>Store</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,6 +55,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -61,11 +63,8 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -110,6 +109,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -128,6 +128,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ImportController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PaymentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RevenueController.cs" />
     <Compile Include="Common\CommonSession.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -139,8 +145,13 @@
     <Compile Include="Models\DAO\CommonDAO.cs" />
     <Compile Include="Models\DAO\NewDAO.cs" />
     <Compile Include="Models\DAO\OrderDAO.cs" />
+    <Compile Include="Models\DAO\ProducerDAO.cs" />
     <Compile Include="Models\DAO\ProductDAO.cs" />
+    <Compile Include="Models\DAO\ProductTypeDAO.cs" />
+    <Compile Include="Models\DAO\ReceiptDAO.cs" />
+    <Compile Include="Models\DAO\RevenueDAO.cs" />
     <Compile Include="Models\DAO\SlideDAO.cs" />
+    <Compile Include="Models\DAO\SupplierDAO.cs" />
     <Compile Include="Models\EF\BinhLuan.cs" />
     <Compile Include="Models\EF\CauHinh.cs" />
     <Compile Include="Models\EF\ChiTietDonDatHang.cs" />
@@ -163,6 +174,44 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\Admin\css\bootstrap.min.css" />
+    <Content Include="assets\Admin\css\demo.css" />
+    <Content Include="assets\Admin\css\light-bootstrap-dashboard.css" />
+    <Content Include="assets\Admin\fonts\nucleo-icons.svg" />
+    <Content Include="assets\Admin\img\apple-icon.png" />
+    <Content Include="assets\Admin\img\default-avatar.png" />
+    <Content Include="assets\Admin\img\faces\face-0.jpg" />
+    <Content Include="assets\Admin\img\faces\face-1.jpg" />
+    <Content Include="assets\Admin\img\faces\face-2.jpg" />
+    <Content Include="assets\Admin\img\faces\face-3.jpg" />
+    <Content Include="assets\Admin\img\faces\face-4.jpg" />
+    <Content Include="assets\Admin\img\faces\face-5.jpg" />
+    <Content Include="assets\Admin\img\faces\face-6.jpg" />
+    <Content Include="assets\Admin\img\faces\face-7.jpg" />
+    <Content Include="assets\Admin\img\faces\tim_vector.jpe" />
+    <Content Include="assets\Admin\img\favicon.ico" />
+    <Content Include="assets\Admin\img\full-screen-image-3.jpg" />
+    <Content Include="assets\Admin\img\loading-bubbles.svg" />
+    <Content Include="assets\Admin\img\mask.png" />
+    <Content Include="assets\Admin\img\new_logo.png" />
+    <Content Include="assets\Admin\img\sidebar-1.jpg" />
+    <Content Include="assets\Admin\img\sidebar-2.jpg" />
+    <Content Include="assets\Admin\img\sidebar-3.jpg" />
+    <Content Include="assets\Admin\img\sidebar-4.jpg" />
+    <Content Include="assets\Admin\img\sidebar-5.jpg" />
+    <Content Include="assets\Admin\img\tim_80x80.png" />
+    <Content Include="assets\Admin\js\accept.js" />
+    <Content Include="assets\Admin\js\core\bootstrap.min.js" />
+    <Content Include="assets\Admin\js\core\jquery.3.2.1.min.js" />
+    <Content Include="assets\Admin\js\core\popper.min.js" />
+    <Content Include="assets\Admin\js\delivery.js" />
+    <Content Include="assets\Admin\js\demo.js" />
+    <Content Include="assets\Admin\js\light-bootstrap-dashboard.js" />
+    <Content Include="assets\Admin\js\plugins\bootstrap-datepicker.js" />
+    <Content Include="assets\Admin\js\plugins\bootstrap-notify.js" />
+    <Content Include="assets\Admin\js\plugins\bootstrap-switch.js" />
+    <Content Include="assets\Admin\js\plugins\chartist.min.js" />
+    <Content Include="assets\Admin\js\plugins\nouislider.min.js" />
     <Content Include="assets\Client\css\etalage.css" />
     <Content Include="assets\Client\css\form.css" />
     <Content Include="assets\Client\css\megamenu.css" />
@@ -243,12 +292,63 @@
     <Content Include="assets\Client\images\s_arrow.psd" />
     <Content Include="assets\Client\images\Thumbs.db" />
     <Content Include="assets\Client\images\tw.psd" />
+    <Content Include="assets\Admin\fonts\nucleo-icons.eot" />
+    <Content Include="assets\Admin\fonts\nucleo-icons.ttf" />
+    <Content Include="assets\Admin\fonts\nucleo-icons.woff" />
+    <Content Include="assets\Admin\fonts\nucleo-icons.woff2" />
+    <Content Include="assets\Admin\sass\lbd\mixins\_buttons.scss" />
+    <Content Include="assets\Admin\sass\lbd\mixins\_cards.scss" />
+    <Content Include="assets\Admin\sass\lbd\mixins\_chartist.scss" />
+    <Content Include="assets\Admin\sass\lbd\mixins\_icons.scss" />
+    <Content Include="assets\Admin\sass\lbd\mixins\_inputs.scss" />
+    <Content Include="assets\Admin\sass\lbd\mixins\_labels.scss" />
+    <Content Include="assets\Admin\sass\lbd\mixins\_morphing-buttons.scss" />
+    <Content Include="assets\Admin\sass\lbd\mixins\_navbars.scss" />
+    <Content Include="assets\Admin\sass\lbd\mixins\_social-buttons.scss" />
+    <Content Include="assets\Admin\sass\lbd\mixins\_tabs.scss" />
+    <Content Include="assets\Admin\sass\lbd\mixins\_transparency.scss" />
+    <Content Include="assets\Admin\sass\lbd\mixins\_vendor-prefixes.scss" />
+    <Content Include="assets\Admin\sass\lbd\plugins\_animate.scss" />
+    <Content Include="assets\Admin\sass\lbd\plugins\_datetime-picker.scss" />
+    <Content Include="assets\Admin\sass\lbd\_alerts.scss" />
+    <Content Include="assets\Admin\sass\lbd\_bootstrap-switch.scss" />
+    <Content Include="assets\Admin\sass\lbd\_buttons.scss" />
+    <Content Include="assets\Admin\sass\lbd\_cards.scss" />
+    <Content Include="assets\Admin\sass\lbd\_chartist.scss" />
+    <Content Include="assets\Admin\sass\lbd\_checkbox-radio-switch.scss" />
+    <Content Include="assets\Admin\sass\lbd\_dropdown.scss" />
+    <Content Include="assets\Admin\sass\lbd\_footers.scss" />
+    <Content Include="assets\Admin\sass\lbd\_inputs.scss" />
+    <Content Include="assets\Admin\sass\lbd\_misc.scss" />
+    <Content Include="assets\Admin\sass\lbd\_mixins.scss" />
+    <Content Include="assets\Admin\sass\lbd\_navbars.scss" />
+    <Content Include="assets\Admin\sass\lbd\_partial-nucleo-icons.scss" />
+    <Content Include="assets\Admin\sass\lbd\_responsive.scss" />
+    <Content Include="assets\Admin\sass\lbd\_sidebar-and-main-panel.scss" />
+    <Content Include="assets\Admin\sass\lbd\_tables.scss" />
+    <Content Include="assets\Admin\sass\lbd\_typography.scss" />
+    <Content Include="assets\Admin\sass\lbd\_variables.scss" />
+    <Content Include="assets\Admin\sass\light-bootstrap-dashboard.scss" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\Admin_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Import\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Payment\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Payment\Unpaid.cshtml" />
+    <Content Include="Areas\Admin\Views\Payment\Paid.cshtml" />
+    <Content Include="Areas\Admin\Views\Payment\success.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Revenue\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -277,7 +377,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assets\Admin\" />
+    <Folder Include="Areas\Admin\Data\" />
     <Folder Include="assets\Client\Ads\" />
     <Folder Include="assets\Client\News\" />
     <Folder Include="assets\Client\Product_Images\" />
@@ -295,6 +395,26 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Accessibility">
+      <Guid>{1EA4DBF0-3C3B-11CF-810C-00AA00389B71}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AccessibilityCplAdminLib">
+      <Guid>{714DD4F6-7676-4BDE-925A-C2FEC2073F36}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

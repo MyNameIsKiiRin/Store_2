@@ -30,7 +30,7 @@ namespace Store.Models.EF
         [StringLength(50)]
         public string MaKH { get; set; }
 
-        public int? UuDai { get; set; }
+        public int UuDai { get; set; }
         public bool? HuyDon { get; set; }
         public bool? TrangThai { get; set; }
 

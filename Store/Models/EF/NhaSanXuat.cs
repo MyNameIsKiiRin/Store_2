@@ -1,4 +1,4 @@
-namespace Store.Models.EF
+﻿namespace Store.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -20,6 +20,7 @@ namespace Store.Models.EF
         public string MaNSX { get; set; }
 
         [StringLength(100)]
+        [Display(Name = "Nhà Sản Xuất")]
         public string TenNSX { get; set; }
 
         public string ThongTin { get; set; }
