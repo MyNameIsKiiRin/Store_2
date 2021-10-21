@@ -44,6 +44,12 @@ namespace Store.Models.DAO
         public bool accept(string id)
         {
             var order = db.DonDatHangs.Find(id);
+            var detail_order = db.ChiTietDonDatHangs.Where(n => n.MaDDH == id);
+            foreach(var item in  detail_order)
+            {
+                SanPham sp = db.SanPhams.Find(item.MaSP);
+                sp.SoLuongTon -= item.SoLuong;
+            }
             order.DaThanhToan = true;
             db.SaveChanges();
             return true;

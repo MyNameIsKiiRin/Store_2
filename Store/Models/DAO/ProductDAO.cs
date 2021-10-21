@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Store.Models.EF;
+using PagedList;
 namespace Store.Models.DAO
 {
     public class ProductDAO
@@ -21,6 +22,10 @@ namespace Store.Models.DAO
         {
             return db.SanPhams.Where(n=>n.TrangThai==true);
         }
+        public IEnumerable<SanPham> page_list_product(int page, int pageSize)
+        {
+            return db.SanPhams.Where(n => n.TrangThai == true).OrderBy(n => n.DonGia).ToPagedList(page, pageSize);
+        }
         public IEnumerable<CauHinh> option(string id)
         {
             return db.CauHinhs.Where(n => n.MaSP==id);
@@ -33,6 +38,7 @@ namespace Store.Models.DAO
         {
             return db.SanPhams.SingleOrDefault(n => n.MaSP == id&&n.TrangThai==true);
         }
+
         public IEnumerable<SanPham> Tablet()
         {
             return db.SanPhams.Where(n=>n.MaLoaiSP=="7" && n.TrangThai==true);
@@ -81,17 +87,27 @@ namespace Store.Models.DAO
             try
             {
                 var sp = db.SanPhams.Find(entity.MaSP);
-                if(entity.HinhAnh1!=null && entity.HinhAnh2!=null && entity.HinhAnh3!=null)
+                if(entity.HinhAnh1!=null )
                 {
                     sp.HinhAnh1 = entity.HinhAnh1;
+                    
+                }
+                else if (entity.HinhAnh2 != null)
+                {
                     sp.HinhAnh2 = entity.HinhAnh2;
+
+                }
+                if (entity.HinhAnh3 != null)
+                {
                     sp.HinhAnh3 = entity.HinhAnh3;
+
                 }
                 sp.DonGia = entity.DonGia;
                 sp.TenTat = entity.TenTat;
                 sp.TrangThai = entity.TrangThai;
                 sp.Moi = entity.Moi;
                 sp.MoTa = entity.MoTa;
+                sp.NgayCapNhat = DateTime.Now;
                 db.SaveChanges();
                 return true;
 

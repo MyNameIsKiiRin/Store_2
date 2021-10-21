@@ -7,7 +7,7 @@ using Store.Models.DAO;
 using Store.Models.EF;
 namespace Store.Areas.Admin.Controllers
 {
-    public class PaymentController : Controller
+    public class PaymentController : BaseController
     {
         
         // GET: Admin/Payment

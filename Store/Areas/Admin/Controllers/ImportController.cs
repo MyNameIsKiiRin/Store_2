@@ -7,7 +7,7 @@ using Store.Models.EF;
 using Store.Models.DAO;
 namespace Store.Areas.Admin.Controllers
 {
-    public class ImportController : Controller
+    public class ImportController : BaseController
     {
         DBStore db = new DBStore();
         // GET: Admin/Import
@@ -41,9 +41,10 @@ namespace Store.Areas.Admin.Controllers
                 }
                 db.ChiTietPhieuNhaps.AddRange(lst);
                 db.SaveChanges();
+
             }
-            
-            return View();
+            SetAlert("Nhập Hàng Thành Công", "success");
+            return RedirectToAction("Index");
         }
     }
 }

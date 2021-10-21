@@ -30,6 +30,7 @@ namespace Store.Models.EF
         public virtual DbSet<ThanhVien> ThanhViens { get; set; }
         public virtual DbSet<QuangCao> QuangCaos { get; set; }
         public virtual DbSet<Footer> Footers { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CauHinh>()

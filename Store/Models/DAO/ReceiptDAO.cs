@@ -45,5 +45,6 @@ namespace Store.Models.DAO
                 return max.ToString();
             }
         }
+       
     }
 }

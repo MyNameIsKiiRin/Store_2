@@ -7,7 +7,7 @@ using Store.Models.DAO;
 using Store.Models.EF;
 namespace Store.Controllers
 {
-    public class CartController : Controller
+    public class CartController : BaseController
     {
         DBStore db = new DBStore();
         // GET: Cart
@@ -39,7 +39,7 @@ namespace Store.Controllers
             {
                 if (sp.SoLuongTon < CartCheck.soluong)
                 {
-                    return null;
+                    SetAlert("Số Lượng Sản Phẩm Không Đủ", "warning");
                 }
                 CartCheck.soluong++;
                 CartCheck.thanhtien = CartCheck.soluong * CartCheck.dongia;
@@ -47,7 +47,7 @@ namespace Store.Controllers
             }
             
             CartItem itemcart = new CartItem(id,cfid);
-            if (sp.SoLuongTon < itemcart.soluong) return null;
+            if (sp.SoLuongTon < itemcart.soluong) SetAlert("Số Lượng Sản Phẩm Không Đủ", "warning"); ;
                 LstCart.Add(itemcart);
             return Redirect(url);
         }
@@ -143,9 +143,9 @@ namespace Store.Controllers
                     dtorder.SoLuong = item.soluong;
                     dtorder.DonGia = item.dongia;
                     db.ChiTietDonDatHangs.Add(dtorder);
-
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
+               
             }
             Session["Cart"] = null;
             return RedirectToAction("Index");

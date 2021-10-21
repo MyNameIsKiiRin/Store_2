@@ -23,6 +23,7 @@
     <link href="~/assets/Admin/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="~/assets/Admin/css/demo.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/mggu5ms8dqpj8whxzemh0pq2st75ja0goicqbbrt5ctqrl7m/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
@@ -75,7 +76,7 @@
                             <i class="nc-icon nc-notes"></i>
                             <p>Nhập Hàng</p>
                         </a>
-<li class="nav-item  ">
+                    <li class="nav-item  ">
                         <a class="nav-link" href=@Url.Action("Index","Payment")>
                             <i class="nc-icon nc-paper-2"></i>
                             <p>Duyệt Đơn Hàng</p>
@@ -89,7 +90,7 @@
                     </li>
                     
                     <li class="nav-item active active-pro">
-                        <a class="nav-link active" href="upgrade.html">
+                        <a class="nav-link active" href=@Url.Action("Logout","Login")>
                             <i class="nc-icon nc-alien-33"></i>
                             <p>Đăng Xuất</p>
                         </a>
@@ -100,6 +101,12 @@
         <div class="main-panel">
             <div class="content">
                 <div class="container-fluid">
+                    @if (TempData["AlertMessage"] != null)
+                    {
+                        <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+                            @TempData["AlertMessage"]
+                        </div>
+                    }
                     @RenderBody()
                 </div>
             </div>
@@ -195,5 +202,9 @@
 </script>
 <script src="~/assets/Admin/js/delivery.js"></script>
 <script src="~/assets/Admin/js/accept.js"></script>
+<script>
+    $('#AlertBox').removeClass('hide');
+    $('#AlertBox').delay(1000).slideUp(500);
+</script>
 
 </html>

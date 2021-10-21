@@ -1,4 +1,9 @@
-﻿@model IEnumerable<Store.Models.EF.SanPham>
+﻿
+@using Store.Models.EF;
+
+@using PagedList;
+@model IPagedList<SanPham>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -6,7 +11,11 @@
 }
 
 <h2 class="text-info">Danh Sách Sản Phẩm</h2>
-
+<style>
+    a{
+        text-decoration:none
+    }
+</style>
 <p>
     <a class="btn btn-primary" href=@Url.Action("Create")>Thêm Sản Phẩm</a>
 </p>
@@ -14,34 +23,34 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.LoaiSanPham.TenLoaiSP)
+                Loại Sản Phẩm
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NhaCungCap.TenNCC)
+                Nhà Cung Cấp
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NhaSanXuat.TenNSX)
+                Nhà Sản Xuất
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TenSP)
+                Tên Sản Phẩm
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TenTat)
+                Tên Tắt
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DonGia)
+                Đơn Giá
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SoLuongTon)
+                Số Lượng Tồn
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TrangThai)
+                Trạng Thái
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NgayCapNhat)
+                Ngày Cập Nhật
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Moi)
+                Sản Phẩm Mới
             </th>
 
 
@@ -96,3 +105,12 @@
     }
 
 </table>
+
+<div class="pagination justify-content-center">
+    @Html.PagedListPager(Model, page =>
+                               Url.Action("Index", new { page = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+</div>           
+            
+
+
+   

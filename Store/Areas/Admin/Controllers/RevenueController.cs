@@ -7,7 +7,7 @@ using Store.Models.DAO;
 using Store.Models.EF;
 namespace Store.Areas.Admin.Controllers
 {
-    public class RevenueController : Controller
+    public class RevenueController : BaseController
     {
         
         int month = 12;

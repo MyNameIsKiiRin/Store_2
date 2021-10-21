@@ -10,8 +10,7 @@ namespace Store.Models.EF
     public partial class ChiTietPhieuNhap
     {
         [Key]
-        [StringLength(50)]
-        public string MaCTPN { get; set; }
+        public int MaCTPN { get; set; }
 
         [StringLength(50)]
         public string MaPN { get; set; }
