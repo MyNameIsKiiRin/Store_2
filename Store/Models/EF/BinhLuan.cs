@@ -10,16 +10,15 @@ namespace Store.Models.EF
     public partial class BinhLuan
     {
         [Key]
-        [StringLength(50)]
-        public string MaBL { get; set; }
+        public int MaBL { get; set; }
 
         public string NoiDungBL { get; set; }
 
-        [StringLength(50)]
-        public string MaThanhVien { get; set; }
+        public int? MaThanhVien { get; set; }
 
-        [StringLength(50)]
-        public string MaSP { get; set; }
+        public int? MaSP { get; set; }
+
+        public DateTime? NgayTao { get; set; }
 
         public virtual SanPham SanPham { get; set; }
 

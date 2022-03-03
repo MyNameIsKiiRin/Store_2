@@ -9,11 +9,12 @@ namespace Store.Controllers
 {
     public class HomeController : Controller
     {
+        
         public ActionResult Index()
         {
             ViewBag.Temp = "";
             var slide = new SlideDAO().slide();
-            var tablet = new ProductDAO().Tablet();
+            var tablet = new ProductDAO().Apple();
             ViewBag.Tablet = tablet;
             var apple = new ProductDAO().Apple();
             ViewBag.Apple = apple;
@@ -29,6 +30,7 @@ namespace Store.Controllers
         public ActionResult PromotionPartial()
         {
             var promotion = new NewDAO().promotion();
+            
             return PartialView(promotion);
         }
         public ActionResult ProductPartial()
@@ -44,6 +46,30 @@ namespace Store.Controllers
         {
             var footer = new CommonDAO().footer();
             return PartialView(footer);
+        }
+        public ActionResult ShowProducts(int MaLoaiSP, int MaNSX)
+        {
+            if (MaNSX == null)
+            {
+                IEnumerable<SanPham> lst1 = new ProductDAO().showbycategories(MaLoaiSP);
+                ViewData["MaLoaiNSX"] = MaNSX;
+                return View(lst1);
+            }
+            IEnumerable<SanPham> lst = new ProductDAO().showproducts(MaLoaiSP, MaNSX);
+            return View(lst);
+        }
+
+        
+        public ActionResult Search(string TenSP)
+        {
+
+            DBStore db = new DBStore();
+            if (TenSP == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            IEnumerable<SanPham> lst = db.SanPhams.Where(x=>x.TenSP.Contains(TenSP));
+            return View(lst);
         }
     }
 }

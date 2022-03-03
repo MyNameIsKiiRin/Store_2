@@ -16,31 +16,26 @@
         }
 
         [Key]
-        [StringLength(50)]
-        public string MaKH { get; set; }
+        [Display(Name = "ID")]
+        public int MaKH { get; set; }
 
         [StringLength(50)]
-        [Required(ErrorMessage ="Bạn Chưa Nhập Tên")]
+        [Display(Name = "Tên Khách Hàng")]
         public string TenKH { get; set; }
 
         [StringLength(100)]
-        [Required(ErrorMessage = "Bạn Chưa Nhập Địa Chỉ")]
+        [Display(Name = "Địa Chỉ")]
         public string DiaChi { get; set; }
 
         [StringLength(50)]
-        [EmailAddress(ErrorMessage ="Sai Định Dạng Email")]
-        [DataType(DataType.EmailAddress,ErrorMessage ="Sai Định Dạng Email")]
-        [Required(ErrorMessage = "Bạn Chưa Nhập Email")]
+
         public string Email { get; set; }
 
         [StringLength(15)]
-        [Required(ErrorMessage = "Bạn Chưa Nhập Số Điện Thoại")]
-        [DataType(DataType.PhoneNumber,ErrorMessage ="Sai Định Dạng Số Điện Thoại")]
-        [Phone(ErrorMessage ="Sai Định Dạng Số Điện Thoại")]
+        [Display(Name = "Số Điện Thoại")]
         public string SoDienThoai { get; set; }
 
-        [StringLength(50)]
-        public string MaThanhVien { get; set; }
+        public int? MaThanhVien { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonDatHang> DonDatHangs { get; set; }

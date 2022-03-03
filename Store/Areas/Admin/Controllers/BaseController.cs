@@ -12,7 +12,7 @@ namespace Store.Areas.Admin.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var session = Session[Common.CommonSession.ADMIN_LOGIN];
-            if(session==null)
+            if (session == null)
             {
                 filterContext.Result =
                     new RedirectToRouteResult(new System.Web.Routing.RouteValueDictionary(new { controller = "Login", action = "Index", Area = "Admin" }));

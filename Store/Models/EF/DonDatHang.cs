@@ -1,4 +1,4 @@
-namespace Store.Models.EF
+﻿namespace Store.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -16,22 +16,23 @@ namespace Store.Models.EF
         }
 
         [Key]
-        [StringLength(50)]
-        public string MaDDH { get; set; }
-
+        [Display(Name = "ID")]
+        public int MaDDH { get; set; }
+        [Display(Name = "Ngày Đặt")]
         public DateTime? NgayDat { get; set; }
-
+        [Display(Name = "Tình Trạng Giao Hàng")]
         public bool? TinhTrangGiaoHang { get; set; }
-
+        [Display(Name = "Ngày Giao")]
         public DateTime? NgayGiao { get; set; }
-
+        [Display(Name = "Đã Thanh Toán")]
         public bool? DaThanhToan { get; set; }
-
-        [StringLength(50)]
-        public string MaKH { get; set; }
-
-        public int UuDai { get; set; }
+        [Display(Name = "Khách Hàng")]
+        public int? MaKH { get; set; }
+        [Display(Name = "Ưu Đãi")]
+        public int? UuDai { get; set; }
+        [Display(Name = "HỦy Đơn")]
         public bool? HuyDon { get; set; }
+        [Display(Name = "Trạng Thái")]
         public bool? TrangThai { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

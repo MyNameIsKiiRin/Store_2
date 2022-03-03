@@ -10,13 +10,10 @@ namespace Store.Models.EF
     public partial class Slide
     {
         [Key]
-        [StringLength(50)]
-        public string MaSlide { get; set; }
+        public int MaSlide { get; set; }
 
         [StringLength(150)]
         public string HinhAnh { get; set; }
-
-
 
         [StringLength(250)]
         public string Link { get; set; }
@@ -24,6 +21,6 @@ namespace Store.Models.EF
         [StringLength(100)]
         public string MoTa { get; set; }
 
-        public bool TrangThai { get; set; }
+        public bool? TrangThai { get; set; }
     }
 }

@@ -16,8 +16,8 @@
         }
 
         [Key]
-        [StringLength(50)]
-        public string MaLoaiSP { get; set; }
+        [Display(Name = "ID")]
+        public int MaLoaiSP { get; set; }
 
         [StringLength(50)]
         [Display(Name = "Loại Sản Phẩm")]

@@ -14,7 +14,7 @@ namespace Store.Models.DAO
         {
             db = new DBStore();
         }
-        public SanPham GetById(string id)
+        public SanPham GetById(int id)
         {
             return db.SanPhams.SingleOrDefault(n => n.MaSP == id);
         }
@@ -26,55 +26,42 @@ namespace Store.Models.DAO
         {
             return db.SanPhams.Where(n => n.TrangThai == true).OrderBy(n => n.DonGia).ToPagedList(page, pageSize);
         }
-        public IEnumerable<CauHinh> option(string id)
+        public IEnumerable<CauHinh> option(int id)
         {
             return db.CauHinhs.Where(n => n.MaSP==id);
         }
-        public CauHinh config(string id)
+        public CauHinh config(int id)
         {
             return db.CauHinhs.FirstOrDefault(n=>n.MaSP==id);
         }
-        public SanPham product(string id)
+        public SanPham product(int id)
         {
             return db.SanPhams.SingleOrDefault(n => n.MaSP == id&&n.TrangThai==true);
         }
 
         public IEnumerable<SanPham> Tablet()
         {
-            return db.SanPhams.Where(n=>n.MaLoaiSP=="7" && n.TrangThai==true);
+
+            return db.SanPhams.Where(n => n.MaLoaiSP == 7 && n.TrangThai == true);
         }
         public IEnumerable<SanPham> Apple()
         {
-            return db.SanPhams.Where(n => n.MaNSX == "1" && n.TrangThai == true);
+            return db.SanPhams.Where(n => n.MaNSX == 1 && n.TrangThai == true);
         }
         public IEnumerable<SanPham> Sound()
         {
-            return db.SanPhams.Where(n => n.MaLoaiSP == "10" && n.TrangThai == true);
+            return db.SanPhams.Where(n => n.MaLoaiSP == 10 && n.TrangThai == true);
         }
         public IEnumerable<SanPham> New_Products()
         {
             return db.SanPhams.Where(n => n.Moi == true && n.TrangThai == true);
         }
-        public List<SanPham> Related(string id)
+        public List<SanPham> Related(int id)
         {
             var pro = db.SanPhams.Find(id);
             return db.SanPhams.Where(n => n.MaSP != id && n.MaLoaiSP == pro.MaLoaiSP).ToList();
         }
-        public string lastid()
-        {
-            int a = 0;
-            List<int> lstid = new List<int>();
-            IEnumerable<string> id = from temp in db.SanPhams select temp.MaSP ;
-            foreach (var temp in id)
-            {
-                a = int.Parse(temp);
-                lstid.Add(int.Parse(temp));
-            }
-            lstid.Sort();
-            int max = lstid.Last();
-            max++;
-            return max.ToString();
-        }
+        
         public bool Insert(SanPham pro)
         {
             
@@ -117,6 +104,14 @@ namespace Store.Models.DAO
             {
                 return false;
             }
+        }
+        public IEnumerable<SanPham> showproducts(int MaLoaiSP, int MaNSX)
+        {
+            return db.SanPhams.Where(x => x.MaNSX == MaNSX && x.MaLoaiSP == MaLoaiSP);
+        }
+        public IEnumerable<SanPham> showbycategories(int MaLoaiSP)
+        {
+            return db.SanPhams.Where(x=> x.MaLoaiSP == MaLoaiSP);
         }
     }
 }

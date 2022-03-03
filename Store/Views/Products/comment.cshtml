@@ -1,0 +1,17 @@
+﻿@using Store.Models.EF
+@model IEnumerable<BinhLuan>
+
+@foreach(var item in Model.Take(3))
+{ 
+    <div class="row" style="margin:0">
+        <i class="large material-icons" style=" font-size: 37px;margin-right:5px">account_circle</i>
+        <span style=" font-weight: 600; text-align: center; font-size: 19px; line-height: 37px;">@item.ThanhVien.HoTen</span>
+    </div>
+    <div style=" margin-left: 26px;">
+        <span style="color: darkgray; font-style: italic; font-size: 15px;">@item.NgayTao</span>
+        <p>@item.NoiDungBL</p>
+    </div>
+    
+    <hr />
+}
+

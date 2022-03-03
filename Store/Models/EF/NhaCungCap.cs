@@ -17,20 +17,22 @@
         }
 
         [Key]
-        [StringLength(50)]
-        public string MaNCC { get; set; }
+        [Display(Name = "ID")]
+        public int MaNCC { get; set; }
 
         [StringLength(50)]
-        [Display(Name = "Nhà Cung Cấp")]
+        [Display(Name = "Tên Nhà Cung Cấp")]
         public string TenNCC { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Địa Chỉ")]
         public string DiaChi { get; set; }
 
         [StringLength(50)]
         public string Email { get; set; }
 
         [StringLength(15)]
+        [Display(Name = "Số Điện Thoại")]
         public string SoDienThoai { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

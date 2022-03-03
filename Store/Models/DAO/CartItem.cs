@@ -8,17 +8,17 @@ namespace Store.Models.DAO
     [Serializable]
     public class CartItem
     {
-        public string masp { get; set; }
+        public int masp { get; set; }
         public string tensp { get; set; }
         public int soluong { get; set; }
         public string hinhanh { get; set; }
         public decimal dongia { get; set; }
         public decimal thanhtien { get; set; }
         public string cauhinh { get; set; }
-        public string mach { get; set; }
+        public int mach { get; set; }
 
 
-        public CartItem(string id,string cfid)
+        public CartItem(int id,int cfid)
         {
             DBStore db = new DBStore();
             masp = id;

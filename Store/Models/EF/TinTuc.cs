@@ -10,8 +10,7 @@ namespace Store.Models.EF
     public partial class TinTuc
     {
         [Key]
-        [StringLength(50)]
-        public string MaTT { get; set; }
+        public int MaTT { get; set; }
 
         public string TieuDe { get; set; }
 
@@ -25,7 +24,9 @@ namespace Store.Models.EF
 
         [StringLength(100)]
         public string AnhBia { get; set; }
-        public bool TrangThai { get; set; }
+
         public string Link { get; set; }
+
+        public bool? TrangThai { get; set; }
     }
 }

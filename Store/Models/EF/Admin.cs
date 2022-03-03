@@ -1,4 +1,4 @@
-﻿namespace Store.Models.EF
+namespace Store.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -9,12 +9,10 @@
     [Table("Admin")]
     public partial class Admin
     {
-        [Key]
         [StringLength(50)]
         public string AdminID { get; set; }
 
+        [StringLength(50)]
         public string MatKhau { get; set; }
-
-
     }
 }

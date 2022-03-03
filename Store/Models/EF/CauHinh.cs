@@ -1,4 +1,4 @@
-namespace Store.Models.EF
+﻿namespace Store.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -10,16 +10,18 @@ namespace Store.Models.EF
     public partial class CauHinh
     {
         [Key]
-        [StringLength(50)]
-        public string MaCH { get; set; }
+        public int MaCH { get; set; }
 
         [StringLength(50)]
+        [Display(Name ="Màn Hình")]
         public string ManHinh { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Hệ Điều Hành")]
         public string HeDieuHanh { get; set; }
 
         [StringLength(50)]
+
         public string Camera { get; set; }
 
         [StringLength(50)]
@@ -32,15 +34,17 @@ namespace Store.Models.EF
         public string Ram { get; set; }
 
         [StringLength(10)]
+        [Display(Name = "Bộ Nhớ Trong")]
         public string Rom { get; set; }
 
         [StringLength(10)]
         public string Pin { get; set; }
 
-        [StringLength(50)]
-        public string MaSP { get; set; }
+        public int? MaSP { get; set; }
+
         [StringLength(250)]
         public string TenCH { get; set; }
+
         public virtual SanPham SanPham { get; set; }
     }
 }

@@ -16,7 +16,7 @@ else
             <table class="table">
                 <thead>
                     <tr>
-                        <td></td>
+
                         <td>Tên Sản Phẩm</td>
                         <td></td>
                         <td>Phiên Bản</td>
@@ -29,26 +29,28 @@ else
 
                 @foreach (var item in Model)
                 {
-                    
+
                     <tr>
+
                         <td>@item.tensp</td>
                         <td><img style="width:15%" src=@Url.Content("~/assets/Client/Product_Images/"+item.hinhanh)></td>
                         <td>@item.cauhinh</td>
                         <td>@item.dongia.ToString("#,##")</td>
                         <td>@item.soluong</td>
                         <td>@item.thanhtien.ToString("#,##")</td>
-                        <td>@Html.ActionLink("Cập nhật", "UpdateCart", new { @id = item.masp, @cfid = item.mach })
+                        <td>@Html.ActionLink("Cập nhật", "UpdateCart", new { @id = item.masp, @cfid = item.mach }, new { @class = "btn btn-info" })
                         <td>
                     </tr>
                 }
 
             </table>
+            <a href="@Url.Action("Payment","Cart")">Thanh toán</a>
             <div class="clearfix"></div>
             <div class="text-right">
                 @if (Session["Customer"] == null)
                 {
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#form">
-                        Thanh Toán
+                        Đặt Hàng
                     </button>
                 }
                 else
@@ -59,13 +61,13 @@ else
                     }
                 }
 
-                </div>
-            
+            </div>
+
         </div>
     </div>
 }
 <div class="text-right m-3">
-    @Html.ActionLink("Tiếp Tục Mua Hàng","Index","Home", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Tiếp Tục Mua Hàng","Index","Home", "", new { @class = "btn btn-primary" })
 
 </div>
 <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -77,6 +79,7 @@ else
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            
             @using (Html.BeginForm("Order", "Cart"))
             {
                 <div class="modal-body">

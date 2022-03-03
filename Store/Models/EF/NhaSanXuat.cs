@@ -16,13 +16,13 @@
         }
 
         [Key]
-        [StringLength(50)]
-        public string MaNSX { get; set; }
+        [Display(Name = "ID")]
+        public int MaNSX { get; set; }
 
         [StringLength(100)]
-        [Display(Name = "Nhà Sản Xuất")]
+        [Display(Name = "Tên Nhà Sản Xuất")]
         public string TenNSX { get; set; }
-
+        [Display(Name = "Thông Tin")]
         public string ThongTin { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

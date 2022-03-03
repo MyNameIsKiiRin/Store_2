@@ -18,7 +18,7 @@
 
         }
         function noti() {
-            txt = 'Chọn Cấu Hình'
+            txt = 'Bạn Chưa Chọn Cấu Hình'
             alert(txt);
         };
         
@@ -98,14 +98,14 @@
                         </li>
                     </ul>
 
-                
+
                     <!-- end product_slider -->
                 </div>
                 <div class="cont1 span_2_of_a1 col-md-5">
                     <h3 class="m_3">@Model.TenSP</h3>
 
                     <div class="price_single">
-                        <span class="reducedfrom">@Model.DonGia.Value.ToString("#,##")</span>
+                        <span class="reducedfrom">@Model.DonGiaGoc.Value.ToString("#,##")</span>
                         <span class="actual">@Model.DonGia.Value.ToString("#,##")đ</span><a href="#">click for offer</a>
                     </div>
                     <ul class="options">
@@ -115,13 +115,13 @@
                             <li><button id="@item.MaCH" class="btn btn-outline-primary" style="border:none" onclick="getid(this.id)">@item.TenCH</button></li>
 
                         }
-                        
+
                         <div class="clearfix"></div>
                     </ul>
                     <div class="btn_form">
-                        <button id="but" class="btn btn-warning" onclick="noti()">Mua Ngay</button>
+                        <button id="but" class="btn btn-warning" onclick="noti()">Thêm Vào Giỏ Hàng</button>
                     </div>
-                    
+
                     <p class="m_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 
                     <div class="social_single">
@@ -145,14 +145,27 @@
 
                 </ul>
                 <div class="toogle" style="width:100%">
-                    <h3 class="m_3">Product Details</h3>
+                    <h3 class="m_3">Cấu Hình Chi Tiết</h3>
                     @{ Html.RenderAction("Config");}
                 </div>
                 <div class="toogle">
-                    <h3 class="m_3">Product Reviews</h3>
+                    <h3 class="m_3">Mô Tả Sản Phẩm</h3>
                     <p class="m_text">@Html.Raw(Model.MoTa)</p>
                 </div>
+                <div class="toogle" style="width:100%">
+                    <h3 class="m_3">Bình Luận(@ViewBag.CountComment)</h3>
+                    @if (ViewBag.check == true)
+                    {
+                        using (Html.BeginForm("PostComment", "Products"))
+                        {
+                        <textarea placeholder="Mời Bạn Để Lại Bình Luận" style="width:100%" name="NoiDungBL"></textarea>
+                        <input type="submit" value="Bình Luận" class="btn btn-primary d-flex justify-content-end"/>
+                        }
+                    }
+                    @{ Html.RenderAction("comment");}
+                </div>
             </div>
+            
             <div class="clear"></div>
         </div>
     </div>

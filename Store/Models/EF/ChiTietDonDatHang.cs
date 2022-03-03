@@ -1,4 +1,4 @@
-namespace Store.Models.EF
+﻿namespace Store.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -10,19 +10,17 @@ namespace Store.Models.EF
     public partial class ChiTietDonDatHang
     {
         [Key]
-        [StringLength(50)]
-        public string MaCTDDH { get; set; }
-
-        [StringLength(50)]
-        public string MaDDH { get; set; }
-
-        [StringLength(50)]
-        public string MaSP { get; set; }
-
+        [Display(Name = "ID")]
+        public int MaCTDDH { get; set; }
+        [Display(Name = "Đơn Đặt Hàng")]
+        public int? MaDDH { get; set; }
+        [Display(Name = "Mã Sản Phẩm")]
+        public int? MaSP { get; set; }
+        [Display(Name = "Tên Sản Phẩm")]
         public string TenSP { get; set; }
-
+        [Display(Name = "Số Lượng")]
         public int? SoLuong { get; set; }
-
+        [Display(Name = "Đơn Giá")]
         public decimal? DonGia { get; set; }
 
         public virtual DonDatHang DonDatHang { get; set; }

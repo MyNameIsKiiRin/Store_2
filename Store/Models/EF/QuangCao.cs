@@ -1,4 +1,4 @@
-﻿namespace Store.Models.EF
+namespace Store.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -10,11 +10,10 @@
     public partial class QuangCao
     {
         [Key]
-        [StringLength(50)]
-        public string MaQQ { get; set; }
+        public int MaQQ { get; set; }
+
         public string Image { get; set; }
-        public bool TrangThai { get; set; }
 
-
+        public bool? TrangThai { get; set; }
     }
 }

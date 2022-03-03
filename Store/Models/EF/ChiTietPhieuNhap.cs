@@ -1,4 +1,4 @@
-namespace Store.Models.EF
+﻿namespace Store.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -10,16 +10,15 @@ namespace Store.Models.EF
     public partial class ChiTietPhieuNhap
     {
         [Key]
+        [Display(Name = "ID")]
         public int MaCTPN { get; set; }
-
-        [StringLength(50)]
-        public string MaPN { get; set; }
-
-        [StringLength(50)]
-        public string MaSP { get; set; }
-
+        [Display(Name = "Mã Phiếu Nhập")]
+        public int? MaPN { get; set; }
+        [Display(Name = "Mã Sản Phẩm")]
+        public int? MaSP { get; set; }
+        [Display(Name = "Số Lượng Nhập")]
         public int? SoLuongNhap { get; set; }
-
+        [Display(Name = "Đơn Giá Nhập")]
         public decimal? DonGiaNhap { get; set; }
 
         public virtual PhieuNhap PhieuNhap { get; set; }

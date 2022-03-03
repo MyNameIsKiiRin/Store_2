@@ -28,7 +28,7 @@ namespace Store.Areas.Admin.Controllers
             ViewBag.pro = prodao;
             
             var dao = new ReceiptDAO();
-            p.MaPN = dao.lastid();
+            
             var result=dao.insert(p);
             SanPham sp;
             if(result)
@@ -43,7 +43,7 @@ namespace Store.Areas.Admin.Controllers
                 db.SaveChanges();
 
             }
-            SetAlert("Nhập Hàng Thành Công", "success");
+            SetAlert("Nhập Hàng Thành Công", "seccess");
             return RedirectToAction("Index");
         }
     }

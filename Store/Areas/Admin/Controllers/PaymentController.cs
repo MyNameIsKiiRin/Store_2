@@ -21,7 +21,7 @@ namespace Store.Areas.Admin.Controllers
             return View(dao);
         }
         [HttpPost]
-        public JsonResult accept(string id)
+        public JsonResult accept(int id)
         {
             var result = new OrderDAO().accept(id);
             return Json(new

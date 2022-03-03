@@ -26,25 +26,7 @@ namespace Store.Models.DAO
             }
             
         }
-        public string lastid()
-        {
-            int a = 0;
-            List<int> lstid = new List<int>();
-            IEnumerable<string> id = from temp in db.PhieuNhaps select temp.MaPN;
-            if (id == null) return 1.ToString();
-            else
-            {
-                foreach (var temp in id)
-                {
-                    a = int.Parse(temp);
-                    lstid.Add(int.Parse(temp));
-                }
-                lstid.Sort();
-                int max = lstid.Last();
-                max++;
-                return max.ToString();
-            }
-        }
+        
        
     }
 }

@@ -9,7 +9,6 @@ namespace Store.Controllers
     public class BaseController : Controller
     {
         // GET: Base
-        
         protected void SetAlert(string mess, string type)
         {
             TempData["AlertMessage"] = mess;

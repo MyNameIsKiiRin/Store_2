@@ -62,7 +62,7 @@ namespace Store.Areas.Admin.Controllers
             }
             
             var dao = new ProductDAO();
-            pro.MaSP = dao.lastid();
+            
             var result=dao.Insert(pro);
             if(result)
             {
@@ -73,7 +73,7 @@ namespace Store.Areas.Admin.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
             var dao = new ProductDAO().GetById(id);
             return View(dao);
