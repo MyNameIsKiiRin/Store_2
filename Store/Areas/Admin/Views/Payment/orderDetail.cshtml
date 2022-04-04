@@ -1,0 +1,97 @@
+﻿@using Store.Models.EF
+@{
+    ViewBag.Title = "orderDetail";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+@model IEnumerable<ChiTietDonDatHang>
+
+@{
+    decimal? temp = 0;
+    var data = ViewBag.order;
+}
+@using (Html.BeginForm("accept", "Payment", FormMethod.Post))
+{
+    <div class="single" id="printPage">
+        <div class="single_grid" id="id_@data.MaDDH">
+
+            <table class="table table-striped table-borderless">
+                <thead>
+                    <tr >
+
+                        <th scope="col">Tên Sản Phẩm</th>
+                        <th scope="col"></th>
+
+                        <th scope="col">Giá</th>
+                        <th scope="col">Số Lượng</th>
+                        <th scope="col">Thành Tiền</th>
+
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                    
+                    <tr>
+
+                        <td scope="row">@item.TenSP @Html.Hidden("MaDDH",item.MaDDH)</td>
+                        <td>
+                            <img style="width:15%" src=@Url.Content("~/assets/Client/Product_Images/" + item.SanPham.HinhAnh1)>
+                            <p style="display:none">@(temp += item.DonGia * item.SoLuong)</p>
+
+                        </td>
+
+                        <td>@item.DonGia.Value.ToString("#,##")</td>
+                        <td>@item.SoLuong</td>
+                        <td>@((item.DonGia * item.SoLuong).Value.ToString("#,##"))</td>
+
+                    </tr>
+                }
+                <ul class="list-group">
+                    
+                    <li class="list-group-item active">Thông tin bên mua</li>
+                    <li class="list-group-item">Mã Đơn Hàng: @data.MaDDH</li>
+                    <li class="list-group-item">Tên Khách Hàng: @data.KhachHang.TenKH</li>
+                    <li class="list-group-item">Ngày Đặt: @data.NgayDat</li>
+                    <li class="list-group-item">Địa Chỉ: @data.KhachHang.DiaChi</li>
+                    <li class="list-group-item">Tổng Tiền: @temp.Value.ToString("#,##")</li>
+                </ul>
+            </table>
+
+        </div>
+
+    </div><div class="text-right">
+    <input type="submit" class="btn btn-primary" value="Duyệt Đơn Hàng" />
+    
+    
+    <button type="button" id="btnOutput" class="btn btn-primary">Xuất Hóa Đơn</button>
+</div>
+}
+<hr />
+<div class="text-right">
+    @using (Html.BeginForm("cancel", "payment", new { id = @data.MaDDH }, FormMethod.Post))
+    {
+        <input type="submit" class="btn btn-warning" value="Từ chối duyệt" />
+    }
+</div>
+<script>
+
+
+    $(document).ready(function () {
+        
+        $("#btnOutput").click(function () {
+            alert("đã click");
+            var content = $(".single_grid").html();
+            xuatdonhang(content);
+        });
+        function xuatdonhang(content) {
+            var printWindow = window.open('', '', 'height=400,width=800');
+            printWindow.document.write('<html><head><H1 style="color:red">PHIẾU XUẤT KHO</H1>');
+            printWindow.document.write('</head><body>');
+            printWindow.document.write(content);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        };
+
+    })
+</script>

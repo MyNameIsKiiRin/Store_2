@@ -7,7 +7,7 @@ using System.Web.Security;
 using Store.Models.EF;
 namespace Store.Areas.Admin.Controllers
 {
-    public class LoginController : BaseController
+    public class LoginController : Controller
     {
         DBStore db = new DBStore();
         // GET: Admin/Login
@@ -25,7 +25,7 @@ namespace Store.Areas.Admin.Controllers
                 Session.Add(Common.CommonSession.ADMIN_LOGIN, ad);
                 return RedirectToAction("Index", "Home");
             }
-            SetAlert("Tài Khoản Hoặc Mật Khẩu Không Chính Xác", "error");
+            //SetAlert("Tài Khoản Hoặc Mật Khẩu Không Chính Xác", "error");
             return RedirectToAction("Index");
         }
         public ActionResult LogOut()

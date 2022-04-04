@@ -22,9 +22,13 @@ namespace Store.Models.DAO
         {
             return db.SanPhams.Where(n=>n.TrangThai==true);
         }
+        public IEnumerable<SanPham> adminProducts()
+        {
+            return db.SanPhams;
+        }
         public IEnumerable<SanPham> page_list_product(int page, int pageSize)
         {
-            return db.SanPhams.Where(n => n.TrangThai == true).OrderBy(n => n.DonGia).ToPagedList(page, pageSize);
+            return db.SanPhams.OrderBy(n => n.DonGia).ToPagedList(page, pageSize);
         }
         public IEnumerable<CauHinh> option(int id)
         {
@@ -91,6 +95,7 @@ namespace Store.Models.DAO
                 }
                 sp.DonGia = entity.DonGia;
                 sp.TenTat = entity.TenTat;
+                if(entity.TrangThai != null)
                 sp.TrangThai = entity.TrangThai;
                 sp.Moi = entity.Moi;
                 sp.MoTa = entity.MoTa;
@@ -112,6 +117,14 @@ namespace Store.Models.DAO
         public IEnumerable<SanPham> showbycategories(int MaLoaiSP)
         {
             return db.SanPhams.Where(x=> x.MaLoaiSP == MaLoaiSP);
+        }
+        public bool changeStatus(int id)
+        {
+            var product=db.SanPhams.Find(id);
+            product.TrangThai=!product.TrangThai;
+            db.SaveChanges();
+            
+            return product.TrangThai;
         }
     }
 }

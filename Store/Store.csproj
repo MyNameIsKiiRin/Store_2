@@ -147,6 +147,7 @@
     <Compile Include="Common\CommonSession.cs" />
     <Compile Include="Common\PayCompare.cs" />
     <Compile Include="Common\PayLib.cs" />
+    <Compile Include="Common\SendMail.cs" />
     <Compile Include="Common\Util.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -310,6 +311,9 @@
     <Content Include="assets\Client\RegisterTemplate\images\bg6.jpg" />
     <Content Include="assets\Client\RegisterTemplate\images\tick.png" />
     <Content Include="assets\Common\images\tiger-2022-chinese-new-year-background-vector.jpg" />
+    <Content Include="Common\Templates\cancelMail.html" />
+    <Content Include="Common\Templates\mail.html" />
+    <Content Include="Common\Templates\successMail.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -490,6 +494,7 @@
     <Content Include="assets\Client\RegisterTemplate\fonts\fontawesome-webfont.woff" />
     <Content Include="assets\Client\RegisterTemplate\fonts\fontawesome-webfont.woff2" />
     <Content Include="assets\Client\RegisterTemplate\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Admin\Views\Payment\orderDetail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

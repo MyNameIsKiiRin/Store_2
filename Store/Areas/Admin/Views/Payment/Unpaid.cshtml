@@ -5,7 +5,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.KhachHang.TenKH)
+                @Html.DisplayNameFor(model => model.MaDDH)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NgayDat)
@@ -17,7 +17,7 @@
                 @Html.DisplayNameFor(model => model.NgayGiao)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DaThanhToan)
+               Tình Trạng Thanh Toán
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.UuDai)
@@ -29,45 +29,49 @@
                 @Html.DisplayNameFor(model => model.TrangThai)
             </th>
             <th></th>
+            
         </tr>
     </thead>
    
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.KhachHang.TenKH)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NgayDat)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TinhTrangGiaoHang)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NgayGiao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DaThanhToan)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UuDai)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.HuyDon)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TrangThai)
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-primary" data-id="@item.MaDDH" id="btnAccept" >
-                            Duyệt Đơn Hàng
-                        </a>
-                        
-                    </td>
-                </tr>
+
+        <tr>
             
+            <td>
+                @Html.DisplayFor(modelItem => item.MaDDH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayDat)
+            </td>
+            <td>
+                @(item.TinhTrangGiaoHang==true?"Đã giao":"Chưa giao")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayGiao)
+            </td>
+            <td>
+                @(item.DaThanhToan==true?"Đã thanh toán":"Chưa thanh toán")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UuDai)
+            </td>
+            <td>
+                @(item.HuyDon==true?"Yêu cầu hủy":"Không")
+            </td>
+            <td>
+                @(item.TrangThai==true?"Đã duyệt":"Chưa Duyệt")
+            </td>
+            
+            <td>
+                <a href="@Url.Action("orderDetail", "Payment", new {id=item.MaDDH})" class="btn btn-default">Thêm thông tin</a>
+            </td>
+
+            
+        </tr>
+
+
         }
     </tbody>
 

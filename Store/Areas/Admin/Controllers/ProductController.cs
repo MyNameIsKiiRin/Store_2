@@ -119,5 +119,14 @@ namespace Store.Areas.Admin.Controllers
             SetAlert("Sửa Sản Phẩm Thất Bại", "warning");
             return View(); 
         }
+        [HttpPost]
+        public JsonResult changeStatus(int id)
+        {
+            var result=new ProductDAO().changeStatus(id);
+            return Json(new
+            {
+                status = result
+            }) ;
+        }
     }
 }

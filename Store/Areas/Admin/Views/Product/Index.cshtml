@@ -85,7 +85,7 @@
                     @Html.DisplayFor(modelItem => item.SoLuongTon)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TrangThai)
+                    <a href="#" class="btn btn-active" data-id="@item.MaSP">@(item.TrangThai==true? "Đang hiển thị" : "Đã ẩn")</a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NgayCapNhat)
@@ -110,7 +110,38 @@
     @Html.PagedListPager(Model, page =>
                                Url.Action("Index", new { page = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
 </div>           
-            
+<script>
+    $(document).ready(function () {
+        
+
+        var product = {
+            init: function () {
+                product.registerEvent();
+            },
+            registerEvent: function () {
+                $('.btn-active').off('click').on('click', function (e) {
+                    e.preventDefault();
+                    var btn = $(this);
+                    var id = btn.data('id');
+                    $.ajax({
+                        url: "/Admin/Product/changeStatus",
+                        data: { id: id },
+                        dataType: "json",
+                        type: "POST",
+                        success: function (response) {
+                            if (response.status == true)
+                                btn.text('Đang hiển thị')
+                            else
+                                btn.text('Đã ẩn')
+                        }
+                    });
+                });
+            }
+        }
+        product.init();
+    })
+       
+</script>  
 
 
    

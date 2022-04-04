@@ -41,7 +41,7 @@ namespace Store.Models.DAO
             }
             return ToTal;
         }
-        public bool accept(int id)
+        public bool getAccept(int id)
         {
             var order = db.DonDatHangs.Find(id);
             var detail_order = db.ChiTietDonDatHangs.Where(n => n.MaDDH == id);
@@ -50,12 +50,19 @@ namespace Store.Models.DAO
                 SanPham sp = db.SanPhams.Find(item.MaSP);
                 sp.SoLuongTon -= item.SoLuong;
             }
-            order.DaThanhToan = true;
+            order.TrangThai = true;
             db.SaveChanges();
             return true;
             
         }
-        public bool delivery(string id)
+        public bool cancel(int id)
+        {
+            var order = db.DonDatHangs.Find(id);
+            order.HuyDon = true;
+            db.SaveChanges();
+            return true;
+        }
+        public bool delivery(int id)
         {
             var order = db.DonDatHangs.Find(id);
             order.TinhTrangGiaoHang = true;
@@ -73,23 +80,28 @@ namespace Store.Models.DAO
             order.DaThanhToan = false;
             order.UuDai = 0;
             order.HuyDon = false;
-            order.TrangThai = true;
+            order.TrangThai = false;
             db.DonDatHangs.Add(order);
             db.SaveChanges();
             return true;
         }
         public IEnumerable<DonDatHang> GetOrder()
         {
-            return db.DonDatHangs.Where(n=>n.TrangThai==true && n.TinhTrangGiaoHang==false && n.DaThanhToan==false &&n.HuyDon==false);
+            return db.DonDatHangs.Where(n=>n.TrangThai==false && n.TinhTrangGiaoHang==false &&n.HuyDon==false);
         }
         public IEnumerable<DonDatHang> Paid()
         {
-            return db.DonDatHangs.Where(n => n.TrangThai == true && n.DaThanhToan == true && n.HuyDon == false && n.TinhTrangGiaoHang == false);
+            return db.DonDatHangs.Where(n => n.TrangThai == true  && n.HuyDon == false && n.TinhTrangGiaoHang == false);
         }
 
         public IEnumerable<DonDatHang> Delivery()
         {
-            return db.DonDatHangs.Where(n => n.TrangThai == true && n.DaThanhToan == true && n.HuyDon == false && n.TinhTrangGiaoHang == true);
+            return db.DonDatHangs.Where(n => n.TrangThai == true && n.HuyDon == false && n.TinhTrangGiaoHang == true);
+        }
+        public IEnumerable<ChiTietDonDatHang> orderDetail(int id)
+        {
+            //Decimal? Sum=db.ChiTietDonDatHangs.Sum(n=>n.DonGia)
+            return db.ChiTietDonDatHangs.Where(n => n.MaDDH == id);
         }
     }
 }

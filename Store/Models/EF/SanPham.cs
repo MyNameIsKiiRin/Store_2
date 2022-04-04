@@ -44,7 +44,7 @@
         [Display(Name = "Loại Sản Phẩm")]
         public int? MaLoaiSP { get; set; }
         [Display(Name = "Trạng Thái")]
-        public bool? TrangThai { get; set; }
+        public bool TrangThai { get; set; }
         [Display(Name = "Ngày Chỉnh Sửa")]
         public DateTime? NgayCapNhat { get; set; }
         [Display(Name = "Sản Phẩm Mới")]
