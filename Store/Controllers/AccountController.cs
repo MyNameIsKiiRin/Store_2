@@ -26,7 +26,7 @@ namespace Store.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-            return View();
+            return View(); 
         }
         public ActionResult Register()
         {
