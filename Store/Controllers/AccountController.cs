@@ -42,7 +42,7 @@ namespace Store.Controllers
                 {
                     return RedirectToAction("Login", "Account");
                 }
-            }
+            } 
             return View();
         }
     }
