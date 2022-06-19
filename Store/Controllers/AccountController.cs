@@ -31,7 +31,7 @@ namespace Store.Controllers
         public ActionResult Register()
         {
             return View();
-        }
+        } 
         [HttpPost]
         public ActionResult Register(ThanhVien tv)
         {
