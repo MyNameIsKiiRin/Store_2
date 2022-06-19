@@ -41,7 +41,7 @@ namespace Store.Controllers
                 if (check == true)
                 {
                     return RedirectToAction("Login", "Account");
-                }
+                } 
             } 
             return View();
         }
